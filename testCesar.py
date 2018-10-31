@@ -1,6 +1,7 @@
 from string import ascii_uppercase
 from random import choice
 
+
 def make_grid(width, height):
     '''
     crates a grid to hold all the tiles 
@@ -37,7 +38,7 @@ def neighbours_of_position(coords):
     return [top_left , top_center, top_right,
             left, right,
             bottom_left, bottom_center, bottom_right]
-            
+
 def all_grid_neighbours(grid):
     '''
     get all of the possible neigbours for each position 
@@ -49,3 +50,16 @@ def all_grid_neighbours(grid):
         neigbours[position] = [p for p in position_neighbours if p in grid]
         
     return neigbours
+
+
+def test_all_grid_neighbours():
+        '''
+        ensure that all the grid positions have neighbours
+        '''
+        grid = make_grid(2,2)
+        neighbours = all_grid_neighbours(grid)
+        assert len(neighbours) == len(grid)
+        for pos in grid:
+            others = list(grid) # creates a new list from the dictionary's keys
+            others.remove(pos)
+            assert sorted(neighbours[pos]) == sorted(others)
