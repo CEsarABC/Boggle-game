@@ -78,7 +78,7 @@ def search(grid, dictionary):
     words = []
     for path in paths:
         words.append(path_to_word(grid,path))
-        return set(words)
+    return set(words)
         
 def get_dictionary(dictionary_file):
     '''
@@ -86,3 +86,19 @@ def get_dictionary(dictionary_file):
     '''
     with open(dictionary_file) as f:
         return[w.strip().upper() for w in f]
+        
+
+def main():
+    ''' 
+    this is the function that will run the whole project
+    '''
+    grid = make_grid(3,3)
+    dictionary = get_dictionary('words.txt')
+    words = search(grid, dictionary)
+    for word in words:
+        print(word)
+    print('Found %s words' % len(words))
+    
+
+if __name__ == '__main__':
+    main()
